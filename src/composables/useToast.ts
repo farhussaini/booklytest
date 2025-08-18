@@ -60,7 +60,7 @@ export function useToast() {
     showToast(message, 'info', duration)
 
   return {
-    toasts: readonly(toasts),
+    toasts,
     showToast,
     removeToast,
     clearAllToasts,
