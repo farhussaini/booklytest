@@ -78,7 +78,7 @@ defineProps<{
 }>()
 
 // Define emits
-defineEmits<{
+const emit = defineEmits<{
   close: []
   submit: [data: BookingData]
 }>()
@@ -106,8 +106,8 @@ const form = reactive<BookingData>({
 // Methods
 const handleSubmit = () => {
   const formData = { ...form }
-  $emit('submit', formData)
-  
+  emit('submit', formData)
+
   // Reset form
   Object.assign(form, {
     name: '',
