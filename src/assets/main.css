@@ -1,1 +1,75 @@
 @import './base.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS Variables for consistency */
+:root {
+  --initial: #7223D8;
+  --primary-text: #082F49;
+}
+
+/* RTL Support */
+html[dir="rtl"] body {
+  font-family: 'Inter', 'Arabic UI Text', system-ui, sans-serif;
+}
+
+/* Custom gradients and effects */
+.gradient-text {
+  background: linear-gradient(90deg, #7223D8 18.8%, #DD4C7B 80.34%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-border {
+  background: linear-gradient(275deg, #DD4C7B -0.05%, #7223D8 100%);
+}
+
+.play-button-shadow {
+  box-shadow: 0 0 0 18px rgba(114, 35, 216, 0.08), 0 0 0 64px rgba(193, 145, 255, 0.08);
+}
+
+/* Blur backgrounds */
+.blur-background-purple {
+  background: rgba(93, 76, 221, 0.50);
+  filter: blur(50px);
+}
+
+.blur-background-yellow {
+  background: rgba(234, 194, 75, 0.50);
+  filter: blur(50px);
+}
+
+.blur-background-red {
+  background: rgba(221, 76, 76, 0.50);
+  filter: blur(50px);
+}
+
+/* Pricing card shadows */
+.pricing-card {
+  backdrop-filter: blur(5px);
+  background: rgba(255, 247, 250, 0.63);
+  border: 1px solid rgba(255, 187, 209, 0.50);
+}
+
+/* Contact form styling */
+.contact-form-bg {
+  background: rgba(255, 247, 250, 0.50);
+  mix-blend-mode: multiply;
+}
+
+/* Arabic text alignment */
+.text-arabic {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Smooth animations */
+.hover-scale {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
