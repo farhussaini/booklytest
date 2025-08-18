@@ -79,10 +79,14 @@ const form = reactive<ContactFormData>({
   agreeTerms: false
 })
 
+const emit = defineEmits<{
+  submit: [data: ContactFormData]
+}>()
+
 const handleSubmit = () => {
   const formData = { ...form }
-  $emit('submit', formData)
-  
+  emit('submit', formData)
+
   // Reset form
   Object.assign(form, {
     name: '',
