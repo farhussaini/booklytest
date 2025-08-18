@@ -129,8 +129,8 @@
     <section id="features" class="py-24 bg-gradient-to-b from-white to-gray-50">
       <div class="container mx-auto px-4">
         <div class="text-center mb-20">
-          <h2 class="text-5xl md:text-6xl font-bold gradient-text mb-6">
-            مميزات البرنامج
+          <h2 class="text-5xl md:text-6xl font-bold gradient-text mb-6" style="margin: -1px 0 24px;">
+            <p>مميزات البرنامج</p>
           </h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
             اكتشف الميزات المتقدمة التي تجعل إدارة مواعيدك أسهل وأكثر احترافية
@@ -367,7 +367,7 @@
             <h3 class="text-4xl font-bold text-text-primary mb-8">تواصل معنا</h3>
             
             <p class="text-lg text-gray-600 leading-relaxed mb-12">
-              نحن هنا لضمان حصولكم على كل الدعم الذي تحتاجونه لأي استفسارات أو عقبات قد تواجهونها، فريقنا مستعد دائمًا لتقديم المساعدة الفعّالة.
+              نحن هنا لضمان حصولكم على كل الدعم الذي تحتاجونه لأي استفسارات أو عقبات قد تواجهونها، فريقن�� مستعد دائمًا لتقديم المساعدة الفعّالة.
             </p>
             
             <div class="space-y-8">
@@ -404,7 +404,7 @@
                 </div>
                 <div>
                   <h4 class="font-semibold text-text-primary mb-1">العنوان</h4>
-                  <p class="text-gray-600">المملكة العربية السعودية</p>
+                  <p class="text-gray-600">المملكة العربية السعودي��</p>
                 </div>
               </div>
             </div>
