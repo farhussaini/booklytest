@@ -80,7 +80,7 @@ import type { ContactFormData } from '@/types/contact'
 
 // Composables
 const { scrollToSection } = useScrollNavigation()
-const { showSuccess, showInfo } = useToast()
+const { showSuccess, showInfo, showError } = useToast()
 
 // Modal states
 const showRegistrationModal = ref(false)
@@ -159,7 +159,7 @@ const submitContactForm = async (data: ContactFormData) => {
     // Here you would typically make an API call to send the contact message
     console.log('Contact form data:', data)
     
-    showSuccess('تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.')
+    showSuccess('تم إرسال رسالتك بن��اح! سنتواصل معك قريباً.')
     
   } catch (error) {
     console.error('Contact form error:', error)
