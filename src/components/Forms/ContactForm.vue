@@ -68,7 +68,7 @@ interface Props {
 
 defineProps<Props>()
 
-defineEmits<{
+const emit = defineEmits<{
   submit: [data: ContactFormData]
 }>()
 
@@ -78,10 +78,6 @@ const form = reactive<ContactFormData>({
   message: '',
   agreeTerms: false
 })
-
-const emit = defineEmits<{
-  submit: [data: ContactFormData]
-}>()
 
 const handleSubmit = () => {
   const formData = { ...form }
