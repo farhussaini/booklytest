@@ -1,14 +1,17 @@
 # User Registration API Documentation
 
 ## Overview
+
 This document provides detailed information about the user registration system API endpoints for the Bookly booking platform.
 
 ## Base URL
+
 ```
 /api/auth
 ```
 
 ## Authentication
+
 Most endpoints require Bearer token authentication except for registration and login.
 
 ## Endpoints
@@ -20,6 +23,7 @@ Most endpoints require Bearer token authentication except for registration and l
 Register a new user account.
 
 #### Request Body
+
 ```json
 {
   "first_name": "أحمد",
@@ -40,6 +44,7 @@ Register a new user account.
 ```
 
 #### Required Fields
+
 - `first_name`: string (max: 255)
 - `last_name`: string (max: 255)
 - `email`: string, unique, valid email format
@@ -48,6 +53,7 @@ Register a new user account.
 - `user_type`: enum ('customer', 'provider')
 
 #### Optional Fields
+
 - `phone`: string (max: 20), valid phone format
 - `date_of_birth`: date (before today)
 - `gender`: enum ('male', 'female', 'other')
@@ -58,6 +64,7 @@ Register a new user account.
 - `language`: enum ('ar', 'en'), default: 'ar'
 
 #### Success Response (201)
+
 ```json
 {
   "success": true,
@@ -82,6 +89,7 @@ Register a new user account.
 ```
 
 #### Error Response (422)
+
 ```json
 {
   "success": false,
@@ -100,6 +108,7 @@ Register a new user account.
 Authenticate user and get access token.
 
 #### Request Body
+
 ```json
 {
   "email": "ahmed@example.com",
@@ -108,6 +117,7 @@ Authenticate user and get access token.
 ```
 
 #### Success Response (200)
+
 ```json
 {
   "success": true,
@@ -131,6 +141,7 @@ Authenticate user and get access token.
 ```
 
 #### Error Response (401)
+
 ```json
 {
   "success": false,
@@ -145,11 +156,13 @@ Authenticate user and get access token.
 Logout user and invalidate current token.
 
 #### Headers
+
 ```
 Authorization: Bearer {token}
 ```
 
 #### Success Response (200)
+
 ```json
 {
   "success": true,
@@ -164,11 +177,13 @@ Authorization: Bearer {token}
 Get current user's profile information.
 
 #### Headers
+
 ```
 Authorization: Bearer {token}
 ```
 
 #### Success Response (200)
+
 ```json
 {
   "success": true,
@@ -205,11 +220,13 @@ Authorization: Bearer {token}
 Update current user's profile information.
 
 #### Headers
+
 ```
 Authorization: Bearer {token}
 ```
 
 #### Request Body
+
 ```json
 {
   "first_name": "أحمد",
@@ -221,6 +238,7 @@ Authorization: Bearer {token}
 ```
 
 #### Success Response (200)
+
 ```json
 {
   "success": true,
@@ -248,11 +266,13 @@ Authorization: Bearer {token}
 Change user's password.
 
 #### Headers
+
 ```
 Authorization: Bearer {token}
 ```
 
 #### Request Body
+
 ```json
 {
   "current_password": "OldPassword123!",
@@ -262,6 +282,7 @@ Authorization: Bearer {token}
 ```
 
 #### Success Response (200)
+
 ```json
 {
   "success": true,
@@ -270,6 +291,7 @@ Authorization: Bearer {token}
 ```
 
 #### Error Response (400)
+
 ```json
 {
   "success": false,
@@ -286,11 +308,13 @@ Authorization: Bearer {token}
 Send email verification link to user.
 
 #### Headers
+
 ```
 Authorization: Bearer {token}
 ```
 
 #### Success Response (200)
+
 ```json
 {
   "success": true,
@@ -305,6 +329,7 @@ Authorization: Bearer {token}
 Verify user's email address using verification link.
 
 #### Success Response (200)
+
 ```json
 {
   "success": true,
@@ -319,11 +344,13 @@ Verify user's email address using verification link.
 Check current user's email verification status.
 
 #### Headers
+
 ```
 Authorization: Bearer {token}
 ```
 
 #### Success Response (200)
+
 ```json
 {
   "success": true,
@@ -338,12 +365,14 @@ Authorization: Bearer {token}
 ## User Types
 
 ### Customer
+
 - Can book services
 - Can leave reviews
 - Can manage their bookings
 - Cannot create businesses
 
 ### Provider
+
 - Can create and manage businesses
 - Can offer services
 - Can accept/reject bookings
@@ -351,6 +380,7 @@ Authorization: Bearer {token}
 - Can view analytics
 
 ### Admin
+
 - Full system access
 - Can manage all users and businesses
 - Can view all bookings and transactions
@@ -359,6 +389,7 @@ Authorization: Bearer {token}
 ## Status Values
 
 ### User Status
+
 - `active`: User can use the platform normally
 - `inactive`: User account is temporarily disabled
 - `suspended`: User account is suspended due to violations
@@ -374,6 +405,7 @@ Authorization: Bearer {token}
 ## Rate Limiting
 
 Registration and login endpoints are rate limited to prevent abuse:
+
 - Registration: 5 attempts per hour per IP
 - Login: 10 attempts per hour per IP
 - Password reset: 3 attempts per hour per email
@@ -383,16 +415,19 @@ Registration and login endpoints are rate limited to prevent abuse:
 The system includes pre-seeded test users for development:
 
 ### Admin
+
 - Email: `admin@bookly.sa`
 - Password: `password123`
 
 ### Providers
+
 - Email: `ahmed.saadi@provider.com`
 - Email: `fatima.mohammadi@provider.com`
 - Email: `mohammed.otaibi@provider.com`
 - Password: `password123`
 
 ### Customers
+
 - Email: `sarah.ghamdi@customer.com`
 - Email: `abdullah.qahtani@customer.com`
 - Email: `nora.shahri@customer.com`
@@ -412,11 +447,13 @@ The system includes pre-seeded test users for development:
 ## Development Setup
 
 1. Run migrations:
+
 ```bash
 php artisan migrate
 ```
 
 2. Seed the database:
+
 ```bash
 php artisan db:seed --class=UserSeeder
 ```
