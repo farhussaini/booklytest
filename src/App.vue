@@ -34,9 +34,8 @@
     <!-- Modals -->
     <RegistrationModal
       :show="showRegistrationModal"
-      :submitting="registrationSubmitting"
       @close="showRegistrationModal = false"
-      @submit="submitRegistration"
+      @success="handleRegistrationSuccess"
     />
 
     <BookingModal
