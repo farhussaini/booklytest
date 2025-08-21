@@ -15,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 
 // Serve Vue.js application for all routes
 Route::get('/{any}', function () {
-    return view('app');
+    try {
+        return view('app');
+    } catch (\Exception $e) {
+        // Fallback if view fails
+        return response()->json([
+            'error' => 'Application loading error',
+            'message' => 'Please check Laravel configuration'
+        ], 500);
+    }
 })->where('any', '.*')->name('spa');
