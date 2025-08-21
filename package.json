@@ -1,6 +1,6 @@
 {
-  "name": "fusion-vue-tailwind-starter",
-  "version": "0.0.0",
+  "name": "bookly",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,13 +11,14 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "serve": "php artisan serve",
+    "fresh": "php artisan migrate:fresh --seed"
   },
   "dependencies": {
     "vue": "^3.5.17"
   },
   "devDependencies": {
-
     "@tsconfig/node22": "^22.0.2",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.15.32",
@@ -32,6 +33,7 @@
     "eslint-plugin-vue": "~10.2.0",
     "jiti": "^2.4.2",
     "jsdom": "^26.1.0",
+    "laravel-vite-plugin": "^1.0.5",
     "npm-run-all2": "^8.0.4",
     "postcss": "^8.5.6",
     "prettier": "3.5.3",
