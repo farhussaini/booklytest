@@ -6,14 +6,14 @@
     <!-- Main Content -->
     <main>
       <!-- Hero Section -->
-      <HeroSection 
+      <HeroSection
         @scroll-to-features="scrollToSection('features')"
         @open-booking="showBookingModal = true"
         @play-video="playVideo"
       />
 
       <!-- Features Section -->
-      <FeaturesSection 
+      <FeaturesSection
         @scroll-to-contact="scrollToSection('contact')"
         @open-booking="showBookingModal = true"
       />
@@ -22,10 +22,7 @@
       <PricingSection @select-plan="selectPlan" />
 
       <!-- Contact Section -->
-      <ContactSection 
-        :form-submitting="formSubmitting"
-        @submit-contact="submitContactForm"
-      />
+      <ContactSection :form-submitting="formSubmitting" @submit-contact="submitContactForm" />
     </main>
 
     <!-- Footer -->
@@ -96,11 +93,11 @@ const playVideo = () => {
 
 const selectPlan = (planId: string) => {
   const planNames = {
-    'pro': 'الباقة الأولى',
-    'premium': 'الباقة المميزة',
-    'custom': 'الباقة المخصصة'
+    pro: 'الباقة الأولى',
+    premium: 'الباقة المميزة',
+    custom: 'الباقة المخصصة',
   }
-  
+
   const planName = planNames[planId as keyof typeof planNames] || 'الباقة'
   showSuccess(`تم اختيار ${planName}! سنتواصل معك لإتمام العملية.`)
 }
@@ -117,17 +114,16 @@ const handleRegistrationSuccess = (user: any) => {
 
 const submitBooking = async (data: BookingData) => {
   bookingSubmitting.value = true
-  
+
   try {
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     // Here you would typically make an API call to create the booking
     console.log('Booking data:', data)
-    
+
     showSuccess('تم حجز موعدك بنجاح! سنتواصل معك لتأكيد التفاصيل.')
     showBookingModal.value = false
-    
   } catch (error) {
     console.error('Booking error:', error)
     showError('حدث خطأ أثناء الحجز. يرجى المحاولة مرة أخرى.')
@@ -138,16 +134,15 @@ const submitBooking = async (data: BookingData) => {
 
 const submitContactForm = async (data: ContactFormData) => {
   formSubmitting.value = true
-  
+
   try {
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
     // Here you would typically make an API call to send the contact message
     console.log('Contact form data:', data)
-    
+
     showSuccess('تم إرسال رسالتك بن��اح! سنتواصل معك قريباً.')
-    
   } catch (error) {
     console.error('Contact form error:', error)
     showError('حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.')
