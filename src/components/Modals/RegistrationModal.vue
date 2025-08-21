@@ -1,9 +1,5 @@
 <template>
-  <BaseModal 
-    :show="show"
-    @close="emit('close')"
-    title="تسجيل حساب جديد"
-  >
+  <BaseModal :show="show" @close="emit('close')" title="تسجيل حساب جديد">
     <form @submit.prevent="handleSubmit" class="space-y-4">
       <!-- Show success message -->
       <div v-if="successMessage" class="p-4 bg-green-50 border border-green-200 rounded-lg">
@@ -22,7 +18,10 @@
       </div>
 
       <!-- Show validation errors -->
-      <div v-if="Object.keys(validationErrors).length > 0" class="p-4 bg-red-50 border border-red-200 rounded-lg">
+      <div
+        v-if="Object.keys(validationErrors).length > 0"
+        class="p-4 bg-red-50 border border-red-200 rounded-lg"
+      >
         <ul class="text-sm text-red-800 space-y-1">
           <li v-for="(errors, field) in validationErrors" :key="field">
             <span v-for="error in errors" :key="error">{{ error }}</span>
@@ -46,7 +45,7 @@
           :disabled="submitting"
         />
       </div>
-      
+
       <FormInput
         v-model="form.email"
         type="email"
@@ -54,7 +53,7 @@
         required
         :disabled="submitting"
       />
-      
+
       <FormInput
         v-model="form.phone"
         type="tel"
@@ -84,13 +83,8 @@
         placeholder="نوع المستخدم"
         :disabled="submitting"
       />
-      
-      <PrimaryButton 
-        type="submit"
-        :loading="submitting"
-        :disabled="submitting"
-        class="w-full"
-      >
+
+      <PrimaryButton type="submit" :loading="submitting" :disabled="submitting" class="w-full">
         {{ submitting ? 'جاري التسجيل...' : 'تسجيل' }}
       </PrimaryButton>
     </form>
@@ -128,7 +122,7 @@ const validationErrors = ref<Record<string, string[]>>({})
 // User type options
 const userTypeOptions = [
   { value: 'customer', label: 'عميل' },
-  { value: 'provider', label: 'مقدم خدمة' }
+  { value: 'provider', label: 'مقدم خدمة' },
 ]
 
 // Form state
@@ -139,7 +133,7 @@ const form = reactive<RegistrationData>({
   phone: '',
   password: '',
   passwordConfirmation: '',
-  userType: 'customer'
+  userType: 'customer',
 })
 
 // Methods
@@ -151,7 +145,7 @@ const resetForm = () => {
     phone: '',
     password: '',
     passwordConfirmation: '',
-    userType: 'customer'
+    userType: 'customer',
   })
 }
 
@@ -163,7 +157,7 @@ const clearMessages = () => {
 
 const handleSubmit = async () => {
   clearMessages()
-  
+
   // Basic validation
   if (form.password !== form.passwordConfirmation) {
     errorMessage.value = 'كلمة المرور وتأكيد كلمة المرور غير متطابقين'
@@ -178,22 +172,22 @@ const handleSubmit = async () => {
   submitting.value = true
 
   try {
-    const response = await apiService.register(form) as AuthResponse
-    
+    const response = (await apiService.register(form)) as AuthResponse
+
     if (response.success) {
       successMessage.value = 'تم تسجيل الحساب بنجاح!'
-      
+
       // Store auth token if needed
       if (response.data.token) {
         localStorage.setItem('auth_token', response.data.token)
       }
-      
+
       // Emit success event with user data
       emit('success', response.data.user)
-      
+
       // Reset form
       resetForm()
-      
+
       // Close modal after short delay
       setTimeout(() => {
         emit('close')
@@ -202,7 +196,7 @@ const handleSubmit = async () => {
     }
   } catch (error: any) {
     console.error('Registration failed:', error)
-    
+
     // Handle API errors
     if (error.message) {
       try {
