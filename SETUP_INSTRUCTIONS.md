@@ -10,7 +10,7 @@ Follow these steps to get your Laravel + Vue.js application running:
 # Install Laravel dependencies
 composer install
 
-# Install Node.js dependencies  
+# Install Node.js dependencies
 npm install
 ```
 
@@ -50,6 +50,7 @@ php artisan db:seed
 ### 5. Start Development Servers
 
 **Option A: Both servers together (Recommended)**
+
 ```bash
 # Terminal 1: Start Laravel server
 php artisan serve
@@ -59,6 +60,7 @@ npm run dev
 ```
 
 **Option B: Use Laravel server only**
+
 ```bash
 # Build frontend assets
 npm run build
@@ -75,6 +77,7 @@ php artisan serve
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/register` - User registration
 - `POST /api/auth/login` - User login
 - `POST /api/auth/logout` - User logout
@@ -82,6 +85,7 @@ php artisan serve
 - `PUT /api/auth/profile` - Update user profile
 
 ### Test Users
+
 ```json
 {
   "admin": {
@@ -89,7 +93,7 @@ php artisan serve
     "password": "password123"
   },
   "provider": {
-    "email": "ahmed.saadi@provider.com", 
+    "email": "ahmed.saadi@provider.com",
     "password": "password123"
   },
   "customer": {
@@ -131,7 +135,7 @@ php artisan migrate:fresh --seed    # Reset database
 php artisan route:list              # List all routes
 php artisan tinker                  # Laravel console
 
-# Frontend commands  
+# Frontend commands
 npm run dev                         # Development server
 npm run build                       # Build for production
 npm run type-check                  # TypeScript check
@@ -145,6 +149,7 @@ npm run fresh                       # Fresh database migration
 ## Troubleshooting
 
 ### Database Issues
+
 ```bash
 # Create database manually in MySQL
 mysql -u root -p
@@ -152,6 +157,7 @@ CREATE DATABASE bookly_db;
 ```
 
 ### Permission Issues
+
 ```bash
 # Fix storage permissions
 chmod -R 775 storage
@@ -159,6 +165,7 @@ chmod -R 775 bootstrap/cache
 ```
 
 ### Clear Cache
+
 ```bash
 php artisan config:clear
 php artisan cache:clear
@@ -166,6 +173,7 @@ php artisan route:clear
 ```
 
 ### Missing Dependencies
+
 ```bash
 # Re-install all dependencies
 rm -rf vendor node_modules
@@ -176,11 +184,13 @@ npm install
 ## Production Deployment
 
 1. **Build frontend assets:**
+
 ```bash
 npm run build
 ```
 
 2. **Optimize Laravel:**
+
 ```bash
 php artisan config:cache
 php artisan route:cache
@@ -188,6 +198,7 @@ php artisan view:cache
 ```
 
 3. **Set production environment:**
+
 ```env
 APP_ENV=production
 APP_DEBUG=false
@@ -196,22 +207,26 @@ APP_DEBUG=false
 ## Features Included
 
 ✅ **User Registration System**
+
 - Complete user registration with validation
 - Email verification
 - Profile management
 - Password change functionality
 
 ✅ **Authentication API**
+
 - Laravel Sanctum token authentication
 - Rate limiting for security
 - Multi-language support (Arabic/English)
 
 ✅ **Database Schema**
+
 - Users, businesses, services, bookings
 - Payments, notifications, reviews
 - Complete relational structure
 
 ✅ **Frontend**
+
 - Vue.js 3 with TypeScript
 - Tailwind CSS styling
 - Responsive design
@@ -220,6 +235,7 @@ APP_DEBUG=false
 ## Next Steps
 
 After setup, you can:
+
 1. Test the registration API endpoints
 2. Create additional business logic
 3. Implement booking functionality

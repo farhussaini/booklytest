@@ -10,12 +10,12 @@ export default defineConfig({
       input: ['src/assets/main.css', 'src/main.ts'],
       refresh: true,
     }),
-    vue()
+    vue(),
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
   },
   server: {
     hmr: {
@@ -28,8 +28,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         app: 'src/main.ts',
-        css: 'src/assets/main.css'
-      }
-    }
-  }
+        css: 'src/assets/main.css',
+      },
+    },
+  },
 })
