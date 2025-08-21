@@ -86,7 +86,6 @@ const showRegistrationModal = ref(false)
 const showBookingModal = ref(false)
 
 // Loading states
-const registrationSubmitting = ref(false)
 const bookingSubmitting = ref(false)
 const formSubmitting = ref(false)
 
@@ -106,25 +105,14 @@ const selectPlan = (planId: string) => {
   showSuccess(`تم اختيار ${planName}! سنتواصل معك لإتمام العملية.`)
 }
 
-const submitRegistration = async (data: RegistrationData) => {
-  registrationSubmitting.value = true
-  
-  try {
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // Here you would typically make an API call to register the user
-    console.log('Registration data:', data)
-    
-    showSuccess('تم تسجيل حسابك بنجاح! سنرسل لك رسالة تأكيد على بريدك الإلكتروني.')
-    showRegistrationModal.value = false
-    
-  } catch (error) {
-    console.error('Registration error:', error)
-    showError('حدث خطأ أثناء التسجيل. يرجى المحاولة مرة أخرى.')
-  } finally {
-    registrationSubmitting.value = false
-  }
+const handleRegistrationSuccess = (user: any) => {
+  showSuccess(`مرحباً ${user.full_name}! تم تسجيل حسابك بنجاح!`)
+  console.log('New user registered:', user)
+
+  // You can add additional logic here like:
+  // - Redirect to dashboard
+  // - Set user in global state
+  // - Track analytics event
 }
 
 const submitBooking = async (data: BookingData) => {
