@@ -18,18 +18,12 @@ export default defineConfig({
     },
   },
   server: {
+    host: 'localhost',
+    port: 5173,
     hmr: {
       host: 'localhost',
+      port: 5173,
     },
-  },
-  build: {
-    manifest: true,
-    outDir: 'public/build',
-    rollupOptions: {
-      input: {
-        app: 'src/main.ts',
-        css: 'src/assets/main.css',
-      },
-    },
+    cors: true,
   },
 })
