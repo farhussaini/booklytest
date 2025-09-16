@@ -1,6 +1,6 @@
 <template>
   <BaseModal :show="show" @close="emit('close')" title="تسجيل حساب جديد">
-    <form @submit.prevent="handleSubmit" class="space-y-4">
+    <form @submit.prevent="handleSubmit" class="space-y-4 text-green-800">
       <!-- Show success message -->
       <div v-if="successMessage" class="p-4 bg-green-50 border border-green-200 rounded-lg">
         <div class="flex items-center">
@@ -29,7 +29,7 @@
         </ul>
       </div>
 
-      <div class="grid grid-cols-2 gap-4">
+      <div class="grid grid-cols-2 gap-4 text-blue-300">
         <FormInput
           v-model="form.firstName"
           type="text"
