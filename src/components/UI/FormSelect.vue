@@ -75,7 +75,7 @@ const selectClasses = computed(() => [
 }
 
 .form-input {
-  @apply w-full border border-gray-300 rounded-xl px-4 py-3 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300;
+  @apply w-full border border-gray-300 rounded-xl px-4 py-3 text-black placeholder:text-gray-400 caret-black focus:text-black focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-300;
 }
 
 .form-error {

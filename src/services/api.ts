@@ -31,7 +31,7 @@ class ApiService {
 
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+        throw new Error(JSON.stringify(errorData))
       }
 
       return await response.json()
@@ -51,8 +51,8 @@ class ApiService {
         email: data.email,
         phone: data.phone,
         password: data.password,
-        password_confirmation: data.password,
-        user_type: 'customer', // Default to customer
+        password_confirmation: data.passwordConfirmation || data.password,
+        user_type: data.userType || 'customer',
         language: 'ar',
         timezone: 'Asia/Riyadh',
       }),

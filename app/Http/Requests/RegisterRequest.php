@@ -26,7 +26,13 @@ class RegisterRequest extends FormRequest
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'nullable|string|max:20|regex:/^[\+]?[0-9\s\-\(\)]+$/',
+            'phone' => [
+                'nullable',
+                'string',
+                'max:20',
+                // Must be Saudi format: +966 followed by exactly 9 digits
+                'regex:/^\+966\d{9}$/'
+            ],
             'password' => [
                 'required',
                 'confirmed',
