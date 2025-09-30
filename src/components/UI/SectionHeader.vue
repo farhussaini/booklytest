@@ -1,7 +1,7 @@
 <template>
   <div class="text-center mb-20">
-    <h2 class="text-5xl md:text-6xl font-bold gradient-text mb-6" style="margin: -1px 0 24px;">
-      <p>{{ title }}</p>
+    <h2 class="text-5xl md:text-6xl font-bold gradient-text mb-6 leading-[1.2] md:leading-[1.15] tracking-tight pb-1 md:pb-2">
+      <span>{{ title }}</span>
     </h2>
     <p v-if="subtitle" class="text-xl text-gray-600 max-w-3xl mx-auto">
       {{ subtitle }}

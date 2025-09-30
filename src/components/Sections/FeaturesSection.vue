@@ -1,5 +1,5 @@
 <template>
-  <section id="features" class="py-24 bg-gradient-to-b from-white to-gray-50">
+  <section id="features" class="py-24 bg-gradient-to-b from-white to-gray-50 scroll-mt-24 md:scroll-mt-28">
     <div class="container mx-auto px-4">
       <SectionHeader 
         title="مميزات البرنامج"
@@ -67,10 +67,11 @@ const selectedFeature = ref(0)
 
 // Features data
 const features: Feature[] = [
-  { id: 'users', name: 'حسابات المستخدمين' },
-  { id: 'payment', name: 'الدفع الإلكتروني' },
-  { id: 'notifications', name: 'التأكيد بالاشعارات' },
+  { id: 'booking-online', name: 'صفحة حجز مواعيد الاونلاين' },
   { id: 'appointments', name: 'إدارة المواعيد والخدمات' },
+  { id: 'notifications', name: 'التأكيد بالاشعارات' },
+  { id: 'payment', name: 'الدفع الالكتروني' },
+  { id: 'users', name: 'حسابات المستخدمين' },
   { id: 'mobile', name: 'تطبيق الجوال' },
   { id: 'schedules', name: 'ادارة جداول الموظفين' }
 ]
