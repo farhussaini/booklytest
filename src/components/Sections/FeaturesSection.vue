@@ -1,20 +1,20 @@
 <template>
   <section id="features" class="py-24 bg-gradient-to-b from-white to-gray-50 scroll-mt-24 md:scroll-mt-28">
     <div class="container mx-auto px-4">
-      <SectionHeader 
+      <SectionHeader
         title="مميزات البرنامج"
         subtitle="اكتشف الميزات المتقدمة التي تجعل إدارة مواعيدك أسهل وأكثر احترافية"
       />
 
       <!-- Feature Tags -->
-      <FeatureTags 
+      <FeatureTags
         :features="features"
         :selected="selectedFeature"
         @select="selectedFeature = $event"
       />
 
       <div class="text-center mb-20">
-        <PrimaryButton 
+        <PrimaryButton
           @click="$emit('scrollToContact')"
           size="large"
         >
@@ -24,7 +24,7 @@
 
       <!-- Feature Details -->
       <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <FeatureDetails 
+        <FeatureDetails
           :details="featureDetails"
           class="order-2 lg:order-1"
         />
@@ -32,16 +32,16 @@
         <AppMockup class="order-1 lg:order-2" />
       </div>
 
-      <div class="text-center mt-20">
-        <PrimaryButton 
-          @click="$emit('openBooking')"
-          size="xl"
-          class="group"
-        >
-          <span>احجز موعد للتدريب</span>
-          <ChevronLeftIcon class="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-        </PrimaryButton>
-      </div>
+<div class="flex justify-center mt-20">
+  <PrimaryButton
+    @click="$emit('openBooking')"
+    size="xl"
+    class="group"
+  >
+    <span>احجز موعد للتدريب</span>
+    <ChevronLeftIcon class="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+  </PrimaryButton>
+</div>
     </div>
   </section>
 </template>

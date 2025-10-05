@@ -20,7 +20,7 @@ interface Props {
   size?: 'small' | 'medium' | 'large' | 'xl'
   disabled?: boolean
   loading?: boolean
-  variant?: 'primary' | 'gradient'
+  variant?: 'primary' | 'gradient' | 'secondary' | 'default'
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -37,15 +37,25 @@ const buttonClasses = computed(() => [
   `btn-${props.size}`,
   {
     'opacity-50 cursor-not-allowed': props.disabled || props.loading,
+    // Solid primary
     'bg-primary': props.variant === 'primary',
-    'bg-gradient-primary': props.variant === 'gradient'
+    // Gradient/default primary
+    'bg-gradient-primary': props.variant === 'gradient' || props.variant === 'default',
+    // Text colors by variant
+    'text-white': props.variant === 'primary' || props.variant === 'gradient' || props.variant === 'default',
+    'text-primary': props.variant === 'secondary',
+    // Secondary outlined style
+    'border-2': props.variant === 'secondary',
+    'border-primary': props.variant === 'secondary',
+    'hover:bg-primary': props.variant === 'secondary',
+    'hover:text-white': props.variant === 'secondary'
   }
 ])
 </script>
 
 <style scoped>
 .btn-primary {
-  @apply text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center gap-3 justify-center;
+  @apply font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-105 flex items-center gap-3 justify-center;
 }
 
 .btn-small {

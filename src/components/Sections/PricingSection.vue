@@ -1,165 +1,161 @@
 <template>
-  <section id="pricing" :class="$style.maskGroup">
-    <!-- Mobile/Tablet responsive layout -->
-    <div class="block lg:hidden w-full">
-      <div class="container mx-auto px-4 py-16">
-        <SectionHeader
-          title="الأسعار والباقات"
-          subtitle="اختر الباقة المناسب�� لاحتياجاتك وابدأ رحلتك معنا اليوم"
-        />
-        <div class="grid gap-8 sm:grid-cols-2">
-          <PricingCard
-            v-for="plan in pricingPlans"
-            :key="plan.id"
-            :plan="plan"
-            @select="$emit('selectPlan', plan.id)"
-          />
+  <section
+    id="pricing"
+    class="relative w-full py-32 md:py-40 bg-gradient-to-b from-white via-pink-50/40 to-white text-center overflow-hidden"
+  >
+    <!-- Background blur effects -->
+    <div
+      class="absolute top-1/3 -left-32 w-80 h-80 bg-yellow-200/50 blur-3xl rounded-full transform -rotate-45"
+    ></div>
+    <div
+      class="absolute bottom-1/4 -right-32 w-80 h-80 bg-purple-300/50 blur-3xl rounded-full transform rotate-45"
+    ></div>
+
+    <div class="relative container mx-auto px-4">
+      <!-- Section Header -->
+      <SectionHeader
+        title="الأسعار والباقات"
+        subtitle="اختر الباقة المناسبة لاحتياجاتك وابدأ رحلتك معنا اليوم"
+      />
+
+      <!-- Pricing Cards -->
+      <div class="mt-14 mx-[80px] p-[15px] bg-[rgb(255,247,248)] border border-[rgb(246,228,231)] rounded-3xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
+        <div
+          v-for="plan in plans"
+          :key="plan.id"
+          class="relative flex flex-col justify-between rounded-3xl border border-pink-100 bg-white shadow-lg w-full max-w-sm min-h-[26rem] md:min-h-[30rem] transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl hover:border-primary"
+        >
+          <!-- Most Popular Badge -->
+          <div
+            v-if="plan.isPopular"
+            class="absolute top-4 right-4 bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md"
+          >
+            الأكثر شيوعًا
+          </div>
+
+          <!-- Card Content -->
+          <div class="p-8">
+            <h3 class="text-2xl font-bold text-[#082f49] mb-2 tracking-tight">
+              {{ plan.name }}
+            </h3>
+            <p class="text-pink-600 text-lg font-semibold mb-1">
+              {{ plan.price }}
+            </p>
+            <p class="text-gray-600 text-sm mb-6">
+              {{ plan.description }}
+            </p>
+
+            <!-- Features List -->
+            <ul
+              v-if="plan.features && plan.features.length"
+              dir="rtl"
+              class="list-disc list-inside text-right text-gray-700 text-base space-y-2"
+            >
+              <li v-for="(feature, index) in plan.features" :key="index" class="font-medium">
+                {{ feature }}
+              </li>
+            </ul>
+          </div>
+
+          <!-- Card Button -->
+          <div class="p-8 pt-0">
+            <PrimaryButton
+              v-if="plan.id === 'custom'"
+              @click="$emit('scrollToContact')"
+              size="large"
+              class="w-full"
+            >
+              صفحة حجز المواعيد أونلاين
+            </PrimaryButton>
+
+            <PrimaryButton
+              v-else
+              @click="$emit('selectPlan', plan.id)"
+              :variant="plan.buttonVariant"
+              size="large"
+              class="w-full"
+            >
+              اشترك الآن
+            </PrimaryButton>
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- Desktop layout (absolute design) -->
-    <div class="hidden lg:block">
-      <div :class="$style.maskGroupChild" />
-      <div :class="$style.maskGroupItem" />
-
-      <div :class="$style.rectangleParent">
-        <div :class="$style.groupChild" />
-        <div :class="$style.groupItem" />
-
-        <!-- Left card (الباقة المخصصة) -->
-        <div :class="$style.rectangleGroup">
-          <div :class="$style.groupInner" />
-          <div :class="$style.rectangleDiv" />
-          <div :class="$style.rectangleContainer">
-            <div :class="$style.maskGroupGroupChild" />
-            <div :class="$style.div">اشترك الآن</div>
-          </div>
-          <div :class="$style.maskGroupDiv">
-            <p :class="$style.p">شامل لجميع الخدمات للباقات </p>
-            <p :class="$style.p">الأخرى بالإضافة إلى طلبات </p>
-            <p :class="$style.p">العميل الخاصة</p>
-          </div>
-          <div :class="$style.div2">خدمات مميزة</div>
-          <div :class="$style.div3">الباقة المخصصة</div>
-        </div>
-
-        <!-- Middle card (الباقة المميزة) -->
-        <div :class="$style.groupDiv">
-          <div :class="$style.groupChild2" />
-          <div :class="$style.groupChild3" />
-          <div :class="$style.maskGroupRectangleParent">
-            <div :class="$style.maskGroupGroupChild" />
-            <div :class="$style.div">اشترك الآن</div>
-          </div>
-          <div :class="$style.rectangleParent2">
-            <div :class="$style.groupChild5" />
-            <div :class="$style.div5">جدولة مواعيد الحجوزات أونلاين</div>
-            <div :class="$style.groupChild6" />
-            <div :class="$style.div6">الرسائل والشعارات</div>
-            <div :class="$style.groupChild7" />
-            <div :class="$style.groupChild8" />
-            <div :class="$style.div7">فواتير أونلاين</div>
-            <div :class="$style.groupChild9" />
-            <div :class="$style.groupChild10" />
-            <div :class="$style.div8">عدد 3 فروع</div>
-            <div :class="$style.div9">اسم موقع مخصص للشركة</div>
-            <div :class="$style.groupChild11" />
-            <div :class="$style.api">API الربط</div>
-          </div>
-          <div :class="$style.div10">مناسب للشركات الناشئة والمتوسطة</div>
-          <div :class="$style.div11">1999ريال/ سنويا</div>
-          <div :class="$style.div12">الباقة المميزة</div>
-        </div>
-
-        <!-- Right card (الباقة الأولى) -->
-        <div :class="$style.rectangleParent3">
-          <div :class="$style.groupInner" />
-          <div :class="$style.groupChild13" />
-          <div :class="$style.rectangleParent4">
-            <div :class="$style.groupChild14" />
-            <div :class="$style.div">اشترك الآن</div>
-          </div>
-          <div :class="$style.rectangleParent5">
-            <div :class="$style.groupChild5" />
-            <div :class="$style.div5">عدد لا محدود من المستخدمين</div>
-            <div :class="$style.groupChild16" />
-            <div :class="$style.div15">حجوزات غير محدودة</div>
-            <div :class="$style.groupChild17" />
-            <div :class="$style.groupChild18" />
-            <div :class="$style.div16">عدد لا محدد من مزودي الخدمة</div>
-            <div :class="$style.groupChild19" />
-            <div :class="$style.div17">فواتير أونلاين</div>
-            <div :class="$style.groupChild20" />
-            <div :class="$style.div18">استقبال المدفوعات</div>
-          </div>
-          <div :class="$style.div19">مناسب للأفراد</div>
-          <div :class="$style.div20">999 ريال/ سنويا</div>
-          <div :class="$style.div21">الباقة الأولى</div>
-        </div>
-      </div>
-
-      <!-- Desktop heading centered -->
-      <div :class="$style.maskGroupInner">
-        <div :class="$style.wrapper">
-          <b :class="$style.b">الأسعار والباقات </b>
-        </div>
-      </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
 import SectionHeader from '@/components/UI/SectionHeader.vue'
-import PricingCard from '@/components/UI/PricingCard.vue'
-import type { PricingPlan } from '@/types/pricing'
+import PrimaryButton from '@/components/UI/PrimaryButton.vue'
 
-defineEmits<{ selectPlan: [planId: string] }>()
+// Define emitted events
+defineEmits<{
+  selectPlan: [planId: string]
+  scrollToContact: []
+}>()
 
-const pricingPlans: PricingPlan[] = [
+// Define PricingPlan interface
+interface PricingPlan {
+  id: string
+  name: string
+  price: string
+  description: string
+  features: string[]
+  buttonVariant: 'default' | 'secondary'
+  isPopular: boolean
+}
+
+// Arabic plans data
+const plans: PricingPlan[] = [
   {
-    id: 'custom',
-    name: 'الباقة المخصصة',
-    price: 'خدمات مميزة',
-    description: 'شامل لجميع الخدمات للباقات الأخرى بالإضافة إلى طلبات العميل الخاصة',
-    features: [],
-    isPopular: false,
-    buttonVariant: 'secondary'
-  },
-  {
-    id: 'premium',
-    name: 'الباقة المميزة',
-    price: '1999ريال/ سنويا',
-    description: 'مناسب للشركات الناشئة والمتوسطة',
+    id: 'basic',
+    name: 'الباقة الأساسية',
+    price: '19 ر.س / شهر',
+    description: 'خطة مثالية للأفراد الذين يبدأون في استخدام النظام.',
     features: [
-      'جدولة مواعيد الحجوزات أونلاين',
-      'الرسائل والشعارات',
-      'فواتير أونلاين',
-      'عدد 3 فروع',
-      'اسم موقع مخصص للشركة',
-      'API الربط'
+      'الوصول إلى الميزات الأساسية',
+      'دعم فني عبر البريد الإلكتروني',
+      'الوصول إلى المجتمع',
     ],
+    buttonVariant: 'secondary', // white button
     isPopular: false,
-    buttonVariant: 'secondary'
   },
   {
     id: 'pro',
-    name: 'الباقة الأولى',
-    price: '999 ريال/ سنويا',
-    description: 'مناسب للأفراد',
+    name: 'الباقة الاحترافية',
+    price: '49 ر.س / شهر',
+    description: 'مناسبة للفرق والمؤ��سا�� التي تحتاج أداءً أكبر.',
     features: [
-      'عدد لا محدود من المستخدمين',
-      'حجوزات غير محدودة',
-      'عدد لا محدد من مزودي الخدمة',
-      'فرع واحد',
-      'استقبال المدفوعات',
-      'فواتير أونلاين'
+      'جميع ميزات الباقة الأساسية',
+      'دعم أولوية عبر البريد الإلكتروني',
+      'تحليلات متقدمة وتقارير مخصصة',
     ],
+    buttonVariant: 'default', // main pink button
     isPopular: true,
-    buttonVariant: 'primary'
-  }
+  },
+  {
+    id: 'enterprise',
+    name: 'الباقة المميزة',
+    price: '99 ر.س / شهر',
+    description: 'للشركات الكبيرة التي تحتاج حلولًا خاصة ومخصصة.',
+    features: [
+      'جميع ميزات الباقة الاحترافية',
+      'دعم فني مخصص على مدار الساعة',
+      'تكاملات مخصصة مع الأنظمة الداخلية',
+    ],
+    buttonVariant: 'secondary',
+    isPopular: false,
+  },
 ]
 </script>
+
+<style scoped>
+section {
+  direction: rtl;
+}
+</style>
 
 <style module>
 .maskGroup {
@@ -176,6 +172,8 @@ const pricingPlans: PricingPlan[] = [
   min-height: 861px;
   overflow: hidden;
 }
+
+/* Keep your design blur background and responsiveness */
 .maskGroupChild {
   width: 317.6px;
   position: absolute;
@@ -213,140 +211,18 @@ const pricingPlans: PricingPlan[] = [
   backdrop-filter: blur(10px);
   height: 671px;
   z-index: 2;
+  transform-origin: top left;
 }
-.groupChild {
-  position: absolute;
-  top: 0px;
-  left: calc(50% - 580px);
-  border-radius: 32px;
-  background-color: rgba(255, 247, 250, 0.5);
-  width: 1160px;
-  height: 671px;
-  mix-blend-mode: multiply;
-}
-.groupItem {
-  position: absolute;
-  top: 0px;
-  left: calc(50% - 580px);
-  border-radius: 32px;
-  background-color: rgba(255, 247, 250, 0.63);
-  border: 1px solid rgba(255, 187, 209, 0.5);
-  box-sizing: border-box;
-  width: 1160px;
-  height: 671px;
-  mix-blend-mode: multiply;
-}
-.rectangleGroup {
-  position: absolute;
-  top: 112px;
-  left: 138px;
-  width: 273px;
-  height: 445px;
-  font-size: 15px;
-}
-.groupInner {
-  position: absolute;
-  top: 65px;
-  left: 0px;
-  filter: blur(80px);
-  border-radius: 14px;
-  background-color: #ffc6c6;
-  width: 273px;
-  height: 380px;
-}
-.rectangleDiv {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-radius: 20px;
-  background-color: #fff;
-  width: 273px;
-  height: 419px;
-}
-.rectangleContainer {
-  position: absolute;
-  top: 329px;
-  left: 36px;
-  width: 201.9px;
-  height: 58px;
-  font-size: 14px;
-}
-.maskGroupGroupChild {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  border-radius: 10px;
-  background-color: #fff;
-  border: 1px solid #dd4c7b;
-  box-sizing: border-box;
-  width: 201.9px;
-  height: 58px;
-}
-.div {
-  position: absolute;
-  top: 20px;
-  left: 66px;
-  font-weight: 600;
-}
-.maskGroupDiv {
-  position: absolute;
-  top: 146px;
-  left: 29px;
-  letter-spacing: 0.05em;
-  line-height: 121.29%;
-  color: #000;
-  display: inline-block;
-  width: 216px;
-  height: 73px;
-}
-.p { margin: 0; }
-.div2 { position: absolute; top: 71px; left: 92px; font-weight: 600; text-align: left; }
-.div3 { position: absolute; top: 24px; left: 53px; font-size: 24px; font-weight: 600; color: #082f49; text-align: right; }
 
-.groupDiv { position: absolute; top: 112px; left: 443px; width: 274px; height: 445px; }
-.groupChild2 { position: absolute; top: 65px; left: 0px; filter: blur(80px); border-radius: 14px; background-color: #ffc6c6; width: 274px; height: 380px; }
-.groupChild3 { position: absolute; top: 0px; left: 0px; border-radius: 20px; background-color: #fff; width: 274px; height: 419px; }
-.maskGroupRectangleParent { position: absolute; top: 329px; left: 36px; width: 201.9px; height: 58px; }
-
-.rectangleParent2 { position: absolute; top: 131px; left: 51px; width: 203px; height: 171px; text-align: right; font-size: 12px; color: #082f49; }
-.groupChild5 { position: absolute; top: 8px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.div5 { position: absolute; top: 0px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.groupChild6 { position: absolute; top: 33px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.div6 { position: absolute; top: 26px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.groupChild7 { position: absolute; top: 58px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.groupChild8 { position: absolute; top: 83px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.div7 { position: absolute; top: 52px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.groupChild9 { position: absolute; top: 108px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.groupChild10 { position: absolute; top: 135px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.div8 { position: absolute; top: 102px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.div9 { position: absolute; top: 128px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.groupChild11 { position: absolute; top: 161px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.api { position: absolute; top: 154px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.div10 { position: absolute; top: 96px; left: 74px; font-size: 10px; line-height: 17px; color: #000; text-align: right; }
-.div11 { position: absolute; top: 71px; left: 91px; font-size: 15px; font-weight: 600; }
-.div12 { position: absolute; top: 24px; left: 78px; font-size: 24px; font-weight: 600; color: #082f49; }
-
-.rectangleParent3 { position: absolute; top: 112px; left: 749px; width: 273px; height: 445px; text-align: right; color: #fff; }
-.groupChild13 { position: absolute; top: 0px; left: 0px; border-radius: 20px; background-color: #fff; border: 1.5px solid #7223d8; box-sizing: border-box; width: 273px; height: 419px; }
-.rectangleParent4 { position: absolute; top: 329px; left: 36px; width: 201.9px; height: 58px; text-align: center; }
-.groupChild14 { position: absolute; top: 0px; left: 0px; border-radius: 10px; background: linear-gradient(94.2deg, #7223d8, #dd4c7b); width: 201.9px; height: 58px; }
-
-.rectangleParent5 { position: absolute; top: 136px; left: 32px; width: 203px; height: 179px; font-size: 12px; color: #0d0d0d; }
-.groupChild16 { position: absolute; top: 37px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.div15 { position: absolute; top: 30px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.groupChild17 { position: absolute; top: 72px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.groupChild18 { position: absolute; top: 106px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.div16 { position: absolute; top: 66px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.groupChild19 { position: absolute; top: 168px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.div17 { position: absolute; top: 162px; left: 0px; line-height: 17px; display: flex; align-items: center; width: 191px; }
-.groupChild20 { position: absolute; top: 139px; left: 197px; border-radius: 500px; background-color: rgba(8,47,73,0.43); width: 6px; height: 6px; }
-.div18 { position: absolute; top: 99px; left: 95px; line-height: 17px; color: #000; }
-
-.div19 { position: absolute; top: 96px; left: 108px; font-size: 10px; line-height: 17px; color: #000; }
-.div20 { position: absolute; top: 70px; left: 83px; font-size: 15px; font-weight: 600; color: #dd4c7b; text-align: left; }
-.div21 { position: absolute; top: 30px; left: 75px; font-size: 24px; font-weight: 600; background: linear-gradient(92.54deg, #7223d8, #dd4c7b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-.maskGroupInner { width: 505px; position: absolute; margin: 0 !important; top: 92px; left: 50%; transform: translateX(-50%); height: 48px; z-index: 3; font-size: 40px; text-align: center; }
-.wrapper { position: absolute; top: 0px; left: 0px; width: 505px; display: flex; flex-direction: column; align-items: center; }
-.b { align-self: stretch; position: relative; background: linear-gradient(90.25deg, #7223d8, #dd4c7b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+/* Responsive scaling for layout */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .rectangleParent {
+    transform: scale(clamp(0.7, calc((100vw - 2rem) / 1160), 1));
+  }
+}
+@media (min-width: 1280px) {
+  .rectangleParent {
+    transform: none;
+  }
+}
 </style>

@@ -9,12 +9,11 @@
       <p class="text-secondary font-semibold mb-4">{{ plan.price }}</p>
       <p class="text-sm text-gray-500 mb-6">{{ plan.description }}</p>
       
-      <div v-if="plan.features.length > 0" class="space-y-4 mb-8">
-        <div v-for="feature in plan.features" :key="feature" class="pricing-feature">
-          <div class="w-2 h-2 bg-primary rounded-full"></div>
-          <span class="text-sm" :class="plan.isPopular ? 'text-gray-700' : 'text-text-primary'">{{ feature }}</span>
-        </div>
-      </div>
+      <ul v-if="plan.features.length > 0" dir="rtl" class="list-disc list-inside mb-8 text-right space-y-2 text-base">
+        <li v-for="feature in plan.features" :key="feature" class="font-medium" :class="plan.isPopular ? 'text-gray-700' : 'text-text-primary'">
+          {{ feature }}
+        </li>
+      </ul>
     </div>
     
     <button 
@@ -42,7 +41,7 @@ defineEmits<{
 
 <style scoped>
 .pricing-plan {
-  @apply bg-white rounded-2xl p-8 relative shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-purple-light;
+  @apply bg-white rounded-2xl p-8 relative shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary min-h-[26rem] md:min-h-[30rem] flex flex-col justify-between;
 }
 
 .pricing-plan.popular {
@@ -58,7 +57,6 @@ defineEmits<{
 }
 
 .pricing-feature {
-  @apply flex items-center gap-3 text-sm;
 }
 
 .pricing-btn-primary {
@@ -66,7 +64,7 @@ defineEmits<{
 }
 
 .pricing-btn-secondary {
-  @apply w-full border-2 border-secondary text-secondary py-4 rounded-xl font-semibold hover:bg-secondary hover:text-white transition-all duration-300;
+  @apply w-full border-2 border-primary text-primary py-4 rounded-xl font-semibold hover:bg-primary hover:text-white transition-all duration-300;
 }
 
 .gradient-text {

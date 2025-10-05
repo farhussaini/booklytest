@@ -19,7 +19,7 @@
       />
 
       <!-- Pricing Section -->
-      <PricingSection @select-plan="selectPlan" />
+      <PricingSection @select-plan="selectPlan" @scroll-to-contact="scrollToSection('contact')" />
 
       <!-- Contact Section -->
       <ContactSection :form-submitting="formSubmitting" @submit-contact="submitContactForm" />
@@ -103,7 +103,7 @@ const selectPlan = (planId: string) => {
 }
 
 const handleRegistrationSuccess = (user: any) => {
-  showSuccess(`مرحباً ${user.full_name}! تم تسجيل حسابك بنجاح!`)
+  showSuccess(`مرحب��ً ${user.full_name}! تم تسجيل حسابك بنجاح!`)
   console.log('New user registered:', user)
 
   // You can add additional logic here like:

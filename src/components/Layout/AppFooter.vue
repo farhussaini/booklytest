@@ -1,71 +1,132 @@
-<template>
-  <footer class="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-16">
-    <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-4 gap-8">
-        <!-- Company Info -->
-        <div class="md:col-span-2">
-          <div class="flex items-center mb-6">
-            <div class="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mr-3">
-              <AppLogo class="w-6 h-6" />
-            </div>
-            <span class="text-2xl font-bold">Bookly</span>
-          </div>
-          <p class="text-gray-300 mb-6 leading-relaxed">
-            منصة رائدة في إدارة المواعيد والحجوزات، نساعدك على تنظيم وقتك وخدمة عملائك بأفضل طريقة ممكنة.
-          </p>
-          <SocialMediaLinks />
-        </div>
-        
-        <!-- Company Links -->
-        <div class="text-arabic">
-          <h4 class="font-bold text-white mb-6 text-lg">معلومات الشركة</h4>
-          <FooterLinks :links="companyLinks" />
-        </div>
-        
-        <!-- Support Links -->
-        <div class="text-arabic">
-          <h4 class="font-bold text-white mb-6 text-lg">المساعدة والدعم</h4>
-          <FooterLinks :links="supportLinks" />
-        </div>
-      </div>
-      
-      <div class="border-t border-gray-700 mt-12 pt-8 text-center">
-        <p class="text-gray-400">© 2024 Bookly. جميع الحقوق محفوظة.</p>
-      </div>
-    </div>
-  </footer>
+<template> 
+   <div :class="$style.rectangleParent"> 
+     <div :class="$style.groupChild">
+       <!-- Logo and branding at the top -->
+       <div :class="$style.booklyParent"> 
+         <img :class="$style.booklyIcon" alt="" /> 
+         <img :class="$style.groupItem" alt="" /> 
+       </div>
+       <img :class="$style.groupInner" alt="" />
+       
+       <!-- All links inside the existing gradient rectangle -->
+       <div :class="$style.linksContainer">
+         <div :class="$style.linkColumn">
+           <p :class="$style.p"><a href="#" :class="$style.link">عنا</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">الاسعار</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">API الربط</a></p>
+         </div>
+         
+         <div :class="$style.linkColumn">
+           <p :class="$style.p"><a href="#" :class="$style.link">الرئيسية</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">المميزات</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">الباقات</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">Blog</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">تسجيل الدخول</a></p>
+         </div>
+         
+         <div :class="$style.linkColumn">
+           <p :class="$style.p"><a href="#" :class="$style.link">الشروط والأحكام</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">السياسة</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">جربها مجانا</a></p>
+         </div>
+       </div>
+       
+       <div :class="$style.copyright2025All"><a href="#" :class="$style.link">Copyright @2025. All right reserved by Bookly.</a></div>
+     </div> 
+   </div> 
 </template>
 
 <script setup lang="ts">
-import AppLogo from '@/components/UI/AppLogo.vue'
-import SocialMediaLinks from '@/components/UI/SocialMediaLinks.vue'
-import FooterLinks from '@/components/UI/FooterLinks.vue'
-
-interface FooterLink {
-  id: string
-  label: string
-  href: string
-}
-
-// Footer links data
-const companyLinks: FooterLink[] = [
-  { id: 'about', label: 'من نحن', href: '#' },
-  { id: 'services', label: 'الخدمات', href: '#' },
-  { id: 'news', label: 'الأخبار', href: '#' },
-  { id: 'careers', label: 'الوظائف', href: '#' }
-]
-
-const supportLinks: FooterLink[] = [
-  { id: 'help', label: 'مركز المساعدة', href: '#' },
-  { id: 'terms', label: 'شروط الاستخدام', href: '#' },
-  { id: 'privacy', label: 'سياسة الخصوصية', href: '#' },
-  { id: 'contact', label: 'اتصل بنا', href: '#' }
-]
+// No script needed for this component
 </script>
 
-<style scoped>
-.text-arabic {
-  direction: rtl;
-  text-align: right;
+<style module>
+.rectangleParent { 
+   width: 100%; 
+   position: relative; 
+   height: 369px; 
+   text-align: right; 
+   font-size: 16px; 
+   color: #082f49; 
+   font-family: Inter;
+   display: flex;
+   justify-content: center;
+} 
+.groupChild { 
+   position: relative; 
+   border-radius: 24px; 
+   background: linear-gradient(100.19deg, rgba(244, 235, 255, 0.8), rgba(253, 238, 231, 0.8)); 
+   border: 1px solid rgba(114, 35, 216, 0.3); 
+   box-sizing: border-box; 
+   width: 1160px; 
+   height: 369px; 
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   justify-content: space-between;
+   padding: 30px 30px 20px;
+   position: relative;
+} 
+.p { 
+   margin: 0; 
+} 
+.link {
+   text-decoration: none;
+   color: inherit;
+   cursor: pointer;
+   transition: color 0.2s ease;
+}
+.link:hover {
+   color: #7223D8;
+}
+.booklyParent { 
+   position: relative; 
+   width: 182.9px; 
+   height: 51.6px; 
+   align-self: flex-start;
+   margin-left: 30px;
+} 
+.booklyIcon { 
+   position: absolute; 
+   top: 9.25px; 
+   left: 63.64px; 
+   width: 119.2px; 
+   height: 38.9px; 
+} 
+.groupItem { 
+   position: absolute; 
+   top: 0px; 
+   left: 0px; 
+   width: 51.6px; 
+   height: 51.6px; 
+} 
+.copyright2025All { 
+   position: absolute; 
+   bottom: 20px; 
+   right: 30px; 
+   font-size: 12px; 
+   line-height: 24px; 
+   color: rgba(8, 47, 73, 0.5); 
+   text-align: left; 
+} 
+.groupInner { 
+   position: relative; 
+   width: 207px; 
+   height: 40.5px; 
+   align-self: flex-start;
+   margin-left: 30px;
+   margin-top: 20px;
+} 
+.linksContainer {
+   display: flex;
+   justify-content: flex-start;
+   width: 70%;
+   max-width: 800px;
+   align-self: flex-start;
+   margin-left: 30px;
+}
+.linkColumn {
+   line-height: 40px;
+   margin: 0 15px 0 0;
 }
 </style>
