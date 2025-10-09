@@ -1,13 +1,14 @@
 <template>
   <div class="text-arabic space-y-8">
-    <h3 class="text-4xl font-bold text-primary mb-8">
+    <h3 id="section-booking-online" class="text-4xl font-bold text-primary mb-8">
       صفحة حجز المواعيد أونلاين
     </h3>
     
     <div class="space-y-8">
-      <div 
-        v-for="(detail, index) in details" 
-        :key="detail.id" 
+      <div
+        v-for="(detail, index) in details"
+        :key="detail.id"
+        :id="`section-${detail.id}`"
         class="feature-detail-card group"
       >
         <div class="flex items-start gap-6">

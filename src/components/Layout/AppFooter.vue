@@ -2,31 +2,31 @@
    <div :class="$style.rectangleParent"> 
      <div :class="$style.groupChild">
        <!-- Logo and branding at the top -->
-       <div :class="$style.booklyParent"> 
-         <img :class="$style.booklyIcon" alt="" /> 
-         <img :class="$style.groupItem" alt="" /> 
+       <div :class="$style.topLeft">
+         <div :class="$style.booklyParent">
+           <img :class="$style.booklyIcon" alt="Bookly logo" />
+           <img :class="$style.groupItem" alt="Bookly mark" />
+         </div>
+         <img :class="$style.groupInner" alt="Brand graphic" />
        </div>
-       <img :class="$style.groupInner" alt="" />
        
        <!-- All links inside the existing gradient rectangle -->
        <div :class="$style.linksContainer">
          <div :class="$style.linkColumn">
-           <p :class="$style.p"><a href="#" :class="$style.link">عنا</a></p> 
-           <p :class="$style.p"><a href="#" :class="$style.link">الاسعار</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">عنا</a></p>
+           <p :class="$style.p"><a href="#" :class="$style.link">الاسعار</a></p>
            <p :class="$style.p"><a href="#" :class="$style.link">API الربط</a></p>
          </div>
-         
          <div :class="$style.linkColumn">
-           <p :class="$style.p"><a href="#" :class="$style.link">الرئيسية</a></p> 
-           <p :class="$style.p"><a href="#" :class="$style.link">المميزات</a></p> 
-           <p :class="$style.p"><a href="#" :class="$style.link">الباقات</a></p> 
-           <p :class="$style.p"><a href="#" :class="$style.link">Blog</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">الرئيسية</a></p>
+           <p :class="$style.p"><a href="#" :class="$style.link">المميزات</a></p>
+           <p :class="$style.p"><a href="#" :class="$style.link">الباقات</a></p>
+           <p :class="$style.p"><a href="#" :class="$style.link">Blog</a></p>
            <p :class="$style.p"><a href="#" :class="$style.link">تسجيل الدخول</a></p>
          </div>
-         
          <div :class="$style.linkColumn">
-           <p :class="$style.p"><a href="#" :class="$style.link">الشروط والأحكام</a></p> 
-           <p :class="$style.p"><a href="#" :class="$style.link">السياسة</a></p> 
+           <p :class="$style.p"><a href="#" :class="$style.link">الشروط والأحكام</a></p>
+           <p :class="$style.p"><a href="#" :class="$style.link">السياسة</a></p>
            <p :class="$style.p"><a href="#" :class="$style.link">جربها مجانا</a></p>
          </div>
        </div>
@@ -52,18 +52,18 @@
    display: flex;
    justify-content: center;
 } 
-.groupChild { 
-   position: relative; 
-   border-radius: 24px; 
-   background: linear-gradient(100.19deg, rgba(244, 235, 255, 0.8), rgba(253, 238, 231, 0.8)); 
-   border: 1px solid rgba(114, 35, 216, 0.3); 
-   box-sizing: border-box; 
-   width: 1160px; 
-   height: 369px; 
+.groupChild {
+   position: relative;
+   border-radius: 24px;
+   background: linear-gradient(100.19deg, rgba(244, 235, 255, 0.8), rgba(253, 238, 231, 0.8));
+   border: 1px solid rgba(114, 35, 216, 0.3);
+   box-sizing: border-box;
+   width: 1160px;
+   height: 369px;
    display: flex;
    flex-direction: column;
    align-items: flex-start;
-   justify-content: space-between;
+   justify-content: flex-start;
    padding: 30px 30px 20px;
    position: relative;
 } 
@@ -79,12 +79,10 @@
 .link:hover {
    color: #7223D8;
 }
-.booklyParent { 
-   position: relative; 
-   width: 182.9px; 
-   height: 51.6px; 
-   align-self: flex-start;
-   margin-left: 30px;
+.booklyParent {
+   position: relative;
+   width: 182.9px;
+   height: 51.6px;
 } 
 .booklyIcon { 
    position: absolute; 
@@ -109,24 +107,30 @@
    color: rgba(8, 47, 73, 0.5); 
    text-align: left; 
 } 
-.groupInner { 
-   position: relative; 
-   width: 207px; 
-   height: 40.5px; 
-   align-self: flex-start;
-   margin-left: 30px;
-   margin-top: 20px;
+.groupInner {
+   position: relative;
+   width: 207px;
+   height: 40.5px;
 } 
-.linksContainer {
+.topLeft {
+   position: absolute;
+   top: 30px;
+   left: 30px;
    display: flex;
-   justify-content: flex-start;
-   width: 70%;
-   max-width: 800px;
-   align-self: flex-start;
-   margin-left: 30px;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.linksContainer {
+   position: absolute;
+   top: 30px;
+   right: 30px;
+   display: flex;
+   justify-content: flex-end;
+   text-align: right;
+   gap: 24px;
 }
 .linkColumn {
    line-height: 40px;
-   margin: 0 15px 0 0;
 }
 </style>

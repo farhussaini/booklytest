@@ -1,34 +1,56 @@
 <template>
-  <div class="relative max-w-5xl mx-auto animate-fade-in-up animation-delay-200">
-    <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-6 shadow-2xl hover:shadow-3xl transition-shadow duration-500">
-      <div class="bg-white rounded-2xl p-8 relative">
-        <div class="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl flex items-center justify-center relative overflow-hidden">
-          <!-- Play Button -->
-          <button @click="$emit('play')" class="group relative">
-            <div class="w-32 h-32 bg-primary rounded-full flex items-center justify-center play-button-shadow group-hover:scale-110 transition-all duration-300 cursor-pointer">
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="group-hover:scale-110 transition-transform">
-                <path d="M18 12L34 24L18 36V12Z" fill="white"/>
-              </svg>
+  <!-- Demo Video Section -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="relative">
+        <!-- Main Device Frame -->
+        <div class="bg-gray-800 rounded-3xl p-6 shadow-2xl">
+          <div class="bg-white rounded-3xl p-6 relative">
+            <!-- Play Button Overlay -->
+            <div class="absolute inset-0 flex items-center justify-center z-10">
+              <div class="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center">
+                <div class="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center">
+                  <button @click="$emit('play')" class="w-16 h-16 bg-primary rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
-          </button>
-          
-          <!-- Logo overlay -->
-          <div class="absolute bottom-6 right-6 flex items-center bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2">
-            <div class="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center mr-2">
-              <AppLogo class="w-4 h-4" />
+
+            <!-- Mock Dashboard Grid -->
+            <div class="grid grid-cols-3 gap-4">
+              <div class="space-y-4">
+                <img src="https://images.pexels.com/photos/5417838/pexels-photo-5417838.jpeg" alt="Calendar app icon on smartphone" class="w-full h-32 rounded-2xl object-cover" />
+                <img src="https://images.pexels.com/photos/5077049/pexels-photo-5077049.jpeg" alt="Hotel booking website on laptop" class="w-full h-40 rounded-2xl object-cover" />
+                <img src="https://images.pexels.com/photos/8372666/pexels-photo-8372666.jpeg" alt="Smartphone with travel calendar" class="w-full h-32 rounded-2xl object-cover" />
+              </div>
+              <div class="border-2 border-primary rounded-2xl p-6 bg-white relative">
+                <div class="text-center py-8">
+                  <div class="text-text-primary font-medium">Effortless Booking,<br>Every Time.</div>
+                </div>
+                <div class="absolute bottom-4 left-1/2 -translate-x-1/2">
+                  <div class="flex items-center gap-3">
+                    <span class="text-xl font-semibold text-text-primary">Bookly</span>
+                    <div class="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center">
+                      <AppLogo class="w-5 h-5 text-white" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <img src="https://images.pexels.com/photos/34239/pexels-photo.jpg" alt="Mobile booking app in hand" class="w-full h-40 rounded-2xl object-cover" />
+                <img src="https://images.pexels.com/photos/257904/pexels-photo-257904.jpeg" alt="Software interface screen" class="w-full h-32 rounded-2xl object-cover" />
+                <img src="https://images.pexels.com/photos/5408684/pexels-photo-5408684.jpeg" alt="Desktop calendar planning" class="w-full h-32 rounded-2xl object-cover" />
+              </div>
             </div>
-            <span class="text-sm font-semibold text-text-primary">Bookly</span>
-          </div>
-          
-          <div class="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-center">
-            <p class="text-text-primary text-lg font-medium">
-              Effortless Booking,<br>Every Time.
-            </p>
           </div>
         </div>
+
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -38,62 +60,3 @@ defineEmits<{
   play: []
 }>()
 </script>
-
-<style scoped>
-.play-button-shadow {
-  position: relative;
-  box-shadow: 
-    0 0 0 0 rgba(114, 35, 216, 0.3),
-    0 0 0 20px rgba(114, 35, 216, 0.08), 
-    0 0 0 40px rgba(193, 145, 255, 0.08);
-  animation: pulse-ring 2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-}
-
-@keyframes pulse-ring {
-  0% {
-    box-shadow: 
-      0 0 0 0 rgba(114, 35, 216, 0.3),
-      0 0 0 20px rgba(114, 35, 216, 0.08), 
-      0 0 0 40px rgba(193, 145, 255, 0.08);
-  }
-  50% {
-    box-shadow: 
-      0 0 0 10px rgba(114, 35, 216, 0.1),
-      0 0 0 25px rgba(114, 35, 216, 0.05), 
-      0 0 0 45px rgba(193, 145, 255, 0.05);
-  }
-  100% {
-    box-shadow: 
-      0 0 0 0 rgba(114, 35, 216, 0.3),
-      0 0 0 20px rgba(114, 35, 216, 0.08), 
-      0 0 0 40px rgba(193, 145, 255, 0.08);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 0.8s ease-out;
-}
-
-.animation-delay-200 {
-  animation-delay: 0.2s;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.shadow-3xl {
-  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.25);
-}
-
-.bg-gradient-primary {
-  background: linear-gradient(275deg, #DD4C7B -0.05%, #7223D8 100%);
-}
-</style>

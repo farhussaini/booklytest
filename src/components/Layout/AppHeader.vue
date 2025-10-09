@@ -2,11 +2,11 @@
   <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
     <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
       <!-- Logo -->
-      <div class="flex items-center cursor-pointer" @click="scrollToTop">
-        <div class="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center mr-3 hover:scale-105 transition-transform">
+      <div class="flex items-center cursor-pointer order-last" @click="scrollToTop">
+        <span class="text-2xl font-bold text-text-primary">Bookly</span>
+        <div class="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center ml-4 hover:scale-105 transition-transform">
           <AppLogo class="w-6 h-6" />
         </div>
-        <span class="text-2xl font-bold text-text-primary">Bookly</span>
       </div>
 
       <!-- Navigation -->
@@ -30,9 +30,9 @@
       </button>
 
       <!-- CTA Button -->
-      <PrimaryButton 
+      <PrimaryButton
         @click="$emit('openRegistration')"
-        class="hidden md:block"
+        class="hidden md:block order-first"
         size="medium"
       >
         التسجيل
