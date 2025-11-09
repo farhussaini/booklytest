@@ -10,7 +10,7 @@
       :placeholder="placeholder"
       :required="required"
       :disabled="disabled"
-      :value="modelValue"
+      :value="modelValue ?? ''"
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       :class="inputClasses"
       v-bind="$attrs"
@@ -25,7 +25,7 @@ import { generateId } from '@/utils/helpers'
 
 // Define props
 interface Props {
-  modelValue: string
+  modelValue: string | undefined
   type?: string
   label?: string
   placeholder?: string

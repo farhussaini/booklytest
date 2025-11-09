@@ -1,7 +1,10 @@
 import type { RegistrationData, LoginData } from '@/types/auth'
+import type { ContactFormData } from '@/types/contact'
+import type { BookingData } from '@/types/booking'
 
 // API Configuration
-const API_BASE_URL = window.location.origin + '/api'
+// Use environment variable if set, otherwise use current origin
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || window.location.origin + '/api'
 
 class ApiService {
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
@@ -82,6 +85,34 @@ class ApiService {
     return this.request('/auth/profile', {
       method: 'PUT',
       body: JSON.stringify(data),
+    })
+  }
+
+  // Contact form endpoint
+  async submitContact(data: ContactFormData) {
+    return this.request('/contact/submit', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        agreeTerms: data.agreeTerms,
+      }),
+    })
+  }
+
+  // Training appointment request (booking form)
+  async submitTrainingRequest(data: BookingData) {
+    return this.request('/contact/training-request', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        company: data.company,
+        service: data.service,
+        notes: data.notes,
+      }),
     })
   }
 }

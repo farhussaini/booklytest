@@ -51,6 +51,9 @@
 import { ref } from 'vue'
 import { useScrollNavigation } from '@/composables/useScrollNavigation'
 import { useToast } from '@/composables/useToast'
+import apiService from '@/services/api'
+import type { BookingData } from '@/types/booking'
+import type { ContactFormData } from '@/types/contact'
 
 // Layout Components
 import AppHeader from '@/components/Layout/AppHeader.vue'
@@ -71,8 +74,6 @@ import ToastContainer from '@/components/UI/ToastContainer.vue'
 
 // Types
 import type { RegistrationData } from '@/types/auth'
-import type { BookingData } from '@/types/booking'
-import type { ContactFormData } from '@/types/contact'
 
 // Composables
 const { scrollToSection } = useScrollNavigation()
@@ -116,17 +117,29 @@ const submitBooking = async (data: BookingData) => {
   bookingSubmitting.value = true
 
   try {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    const response = await apiService.submitTrainingRequest(data) as { success: boolean; message: string }
 
-    // Here you would typically make an API call to create the booking
-    console.log('Booking data:', data)
-
-    showSuccess('تم حجز موعدك بنجاح! سنتواصل معك لتأكيد التفاصيل.')
-    showBookingModal.value = false
-  } catch (error) {
+    if (response.success) {
+      showSuccess(response.message || 'تم حجز موعدك بنجاح! سنتواصل معك لتأكيد التفاصيل.')
+      showBookingModal.value = false
+    } else {
+      showError('حدث خطأ أثناء الحجز. يرجى المحاولة مرة أخرى.')
+    }
+  } catch (error: any) {
     console.error('Booking error:', error)
-    showError('حدث خطأ أثناء الحجز. يرجى المحاولة مرة أخرى.')
+    let errorMessage = 'حدث خطأ أثناء الحجز. يرجى المحاولة مرة أخرى.'
+
+    // Try to extract error message from response
+    if (error.message) {
+      try {
+        const errorData = JSON.parse(error.message)
+        errorMessage = errorData.message || errorMessage
+      } catch {
+        // If parsing fails, use default message
+      }
+    }
+
+    showError(errorMessage)
   } finally {
     bookingSubmitting.value = false
   }
@@ -136,16 +149,30 @@ const submitContactForm = async (data: ContactFormData) => {
   formSubmitting.value = true
 
   try {
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    const response = await apiService.submitContact(data) as { success: boolean; message: string }
 
-    // Here you would typically make an API call to send the contact message
-    console.log('Contact form data:', data)
+    if (response.success) {
+      showSuccess(response.message || 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.')
+    } else {
+      showError('حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.')
+    }
 
     showSuccess('تم إرسال رسالتك بن��اح! سنتواصل معك قريباً.')
-  } catch (error) {
+  } catch (error: any) {
     console.error('Contact form error:', error)
-    showError('حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.')
+    let errorMessage = 'حدث خطأ أثناء إرسال الرسالة. يرجى المحاولة مرة أخرى.'
+
+    // Try to extract error message from response
+    if (error.message) {
+      try {
+        const errorData = JSON.parse(error.message)
+        errorMessage = errorData.message || errorMessage
+      } catch {
+        // If parsing fails, use default message
+      }
+    }
+
+    showError(errorMessage)
   } finally {
     formSubmitting.value = false
   }

@@ -14,20 +14,20 @@
       />
 
 
-      <!-- Feature Details Slider -->
-      <div class="overflow-hidden mt-12">
+      <!-- Feature Details -->
+      <div class="mt-12">
         <div
-          class="flex transition-transform duration-500"
-          :style="{ transform: `translateX(-${selectedFeature * 100}%)` }"
+          v-for="(section, index) in sections"
+          :key="section.id"
+          v-show="selectedFeature === index"
+          class="transition-opacity duration-500"
         >
-          <div
-            v-for="(section, idx) in sections"
-            :key="section.id"
-            class="w-full flex-shrink-0"
-          >
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-              <FeatureDetails :details="section.details" class="order-2 lg:order-1" />
-              <AppMockup class="order-1 lg:order-2" />
+          <div class="flex flex-col lg:grid lg:grid-cols-2 gap-16 items-center">
+            <div class="w-full">
+              <FeatureDetails :details="section.details" :title="section.title" />
+            </div>
+            <div class="w-full">
+              <AppMockup />
             </div>
           </div>
         </div>
@@ -110,11 +110,44 @@ const featureDetails: FeatureDetail[] = [
 const sections = computed(() => {
   const map: Record<string, FeatureDetail[]> = {
     'booking-online': [
-      featureDetails[0]
+      featureDetails[0],
+      {
+        id: 'multiple-providers',
+        title: 'إمكانية إضافة أكثر من مقدم خدمة بمواعيده الخاصة',
+        description: '',
+        icon: 'UserGroupIcon',
+        iconColor: 'bg-yellow-500'
+      },
+      {
+        id: 'flexible-rescheduling',
+        title: 'القدرة على التعديل وإعادة الجدولة',
+        description: '',
+        icon: 'ClockIcon',
+        iconColor: 'bg-blue-600'
+      }
     ],
     'appointments': [
-      featureDetails[1],
-      featureDetails[2]
+      {
+        id: 'appointment-management',
+        title: 'إدارة شاملة للمواعيد والخدمات',
+        description: 'لوحة تحكم متقدمة لإدارة جميع المواعيد والخدمات مع إمكانية التعديل والحذف والإضافة',
+        icon: 'CalendarIcon',
+        iconColor: 'bg-green-600'
+      },
+      {
+        id: 'service-catalog',
+        title: 'كتالوج الخدمات والمدة',
+        description: 'إضافة وتعديل الخدمات مع تحديد المدة والسعر لكل خدمة بشكل منفصل',
+        icon: 'ClockIcon',
+        iconColor: 'bg-purple-600'
+      },
+      {
+        id: 'availability-control',
+        title: 'التحكم في التوفر والأوقات',
+        description: 'تحديد أوقات العمل والعطل مع إمكانية إغلاق مواعيد محددة أو فتحها حسب الحاجة',
+        icon: 'UserGroupIcon',
+        iconColor: 'bg-indigo-600'
+      }
     ],
     'notifications': [
       {
@@ -135,7 +168,7 @@ const sections = computed(() => {
     'payment': [
       {
         id: 'online-payments',
-        title: 'مدفوعات أونلاين آمنة',
+        title: 'دفوعات أونلاين آمنة',
         description: 'قبول المدفوعات عبر بوابات موثوقة وإصدار إيصالات بشكل تلقائي.',
         icon: 'CalendarIcon',
         iconColor: 'bg-rose-500'
@@ -197,6 +230,11 @@ const sections = computed(() => {
       }
     ]
   }
-  return features.map(f => ({ id: f.id, details: map[f.id] || featureDetails }))
+  const result = features.map(f => ({
+    id: f.id,
+    title: f.name,
+    details: map[f.id] || featureDetails
+  }))
+  return result
 })
 </script>

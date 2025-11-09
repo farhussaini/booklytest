@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BookingController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -46,6 +48,12 @@ Route::prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
 });
 
+// Public contact routes
+Route::prefix('contact')->group(function () {
+    Route::post('/submit', [ContactController::class, 'submit']);
+    Route::post('/training-request', [ContactController::class, 'submitTrainingRequest']);
+});
+
 // Protected authentication routes
 Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('auth')->group(function () {
@@ -58,5 +66,16 @@ Route::middleware('auth:sanctum')->group(function () {
     // User info route
     Route::get('/user', function (Request $request) {
         return $request->user();
+    });
+
+    // Booking routes
+    Route::prefix('bookings')->group(function () {
+        Route::get('/', [BookingController::class, 'index']);
+        Route::post('/', [BookingController::class, 'store']);
+        Route::get('/available-slots', [BookingController::class, 'availableSlots']);
+        Route::get('/{id}', [BookingController::class, 'show']);
+        Route::put('/{id}', [BookingController::class, 'update']);
+        Route::post('/{id}/cancel', [BookingController::class, 'cancel']);
+        Route::post('/{id}/confirm', [BookingController::class, 'confirm']);
     });
 });

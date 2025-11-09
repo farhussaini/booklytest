@@ -4,7 +4,6 @@ export interface BookingData {
   phone: string
   company?: string
   service: string
-  preferredDate: string
   notes?: string
 }
 
@@ -20,7 +19,6 @@ export interface Booking {
   phone: string
   company?: string
   service: string
-  preferredDate: string
   notes?: string
   status: 'pending' | 'confirmed' | 'cancelled'
   createdAt: string

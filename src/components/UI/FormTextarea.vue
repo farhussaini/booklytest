@@ -10,7 +10,7 @@
       :required="required"
       :disabled="disabled"
       :rows="rows"
-      :value="modelValue"
+      :value="modelValue ?? ''"
       @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
       :class="textareaClasses"
       v-bind="$attrs"
@@ -24,7 +24,7 @@ import { computed } from 'vue'
 import { generateId } from '@/utils/helpers'
 
 interface Props {
-  modelValue: string
+  modelValue: string | undefined
   label?: string
   placeholder?: string
   rows?: number

@@ -3,7 +3,7 @@
     <!-- Background blur effects -->
     <div class="absolute -top-4 -left-4 w-44 h-44 blur-background-purple rounded-2xl blur-50 transform rotate-12 animate-float"></div>
     <div class="absolute -bottom-8 -left-8 w-44 h-44 blur-background-red rounded-2xl blur-50 transform rotate-90 animate-float animation-delay-200"></div>
-    
+
     <div class="bg-white rounded-3xl p-8 relative z-10 shadow-2xl border border-gray-100">
       <form @submit.prevent="handleSubmit" class="space-y-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -22,27 +22,27 @@
             required
           />
         </div>
-        
+
         <FormTextarea
           v-model="form.message"
           label="الرسالة"
           placeholder="اكتب رسالتك هنا..."
-          rows="4"
+          :rows="4"
           required
         />
-        
+
         <div class="flex items-center gap-3">
-          <input 
+          <input
             v-model="form.agreeTerms"
-            type="checkbox" 
-            id="terms" 
+            type="checkbox"
+            id="terms"
             class="w-5 h-5 text-primary border-2 border-gray-300 rounded focus:ring-primary"
             required
           >
           <label for="terms" class="text-text-primary text-sm">أوافق على جميع الشروط والأحكام</label>
         </div>
-        
-        <PrimaryButton 
+
+        <PrimaryButton
           type="submit"
           :loading="submitting"
           class="w-full"

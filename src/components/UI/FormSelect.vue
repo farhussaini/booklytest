@@ -8,15 +8,15 @@
       :id="selectId"
       :required="required"
       :disabled="disabled"
-      :value="modelValue"
+      :value="modelValue ?? ''"
       @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
       :class="selectClasses"
       v-bind="$attrs"
     >
       <option value="" disabled>{{ placeholder || 'اختر خيار' }}</option>
-      <option 
-        v-for="option in options" 
-        :key="option.value" 
+      <option
+        v-for="option in options"
+        :key="option.value"
         :value="option.value"
       >
         {{ option.label }}
@@ -36,7 +36,7 @@ interface Option {
 }
 
 interface Props {
-  modelValue: string
+  modelValue: string | undefined
   options: Option[]
   label?: string
   placeholder?: string

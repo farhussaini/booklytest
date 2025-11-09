@@ -8,10 +8,10 @@
             v-for="item in primaryChips"
             :key="item.feature.id"
             class="nav-chip group"
-            :class="{ active: selected === item.index }"
+            :class="{ active: selected === item.originalIndex }"
             type="button"
-            :aria-pressed="selected === item.index"
-            @click="$emit('select', item.index)"
+            :aria-pressed="selected === item.originalIndex"
+            @click="$emit('select', item.originalIndex)"
           >
             <span class="text-[15px] md:text-[16px]">{{ item.feature.name }}</span>
           </button>
@@ -27,10 +27,10 @@
             v-for="item in primaryChips"
             :key="item.feature.id"
             class="nav-chip group"
-            :class="{ active: selected === item.index }"
+            :class="{ active: selected === item.originalIndex }"
             type="button"
-            :aria-pressed="selected === item.index"
-            @click="$emit('select', item.index)"
+            :aria-pressed="selected === item.originalIndex"
+            @click="$emit('select', item.originalIndex)"
           >
             <span class="text-[16px]">{{ item.feature.name }}</span>
           </button>
@@ -46,10 +46,10 @@
             v-for="item in secondaryChips"
             :key="item.feature.id"
             class="nav-chip group"
-            :class="{ active: selected === item.index }"
+            :class="{ active: selected === item.originalIndex }"
             type="button"
-            :aria-pressed="selected === item.index"
-            @click="$emit('select', item.index)"
+            :aria-pressed="selected === item.originalIndex"
+            @click="$emit('select', item.originalIndex)"
           >
             <span class="text-[16px]">{{ item.feature.name }}</span>
           </button>
@@ -78,14 +78,14 @@ defineEmits<{
 const order = ['booking-online','appointments','notifications','payment','users']
 const primaryChips = computed(() =>
   props.features
-    .map((f, i) => ({ feature: f, index: i }))
+    .map((f, i) => ({ feature: f, originalIndex: i }))
     .filter(x => order.includes(x.feature.id))
     .sort((a,b) => order.indexOf(a.feature.id) - order.indexOf(b.feature.id))
 )
 
 const secondaryChips = computed(() =>
   props.features
-    .map((f, i) => ({ feature: f, index: i }))
+    .map((f, i) => ({ feature: f, originalIndex: i }))
     .filter(x => x.feature.id === 'mobile' || x.feature.id === 'schedules')
 )
 </script>

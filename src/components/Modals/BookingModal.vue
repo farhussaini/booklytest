@@ -1,5 +1,5 @@
 <template>
-  <BaseModal 
+  <BaseModal
     :show="show"
     @close="$emit('close')"
     title="احجز موعد للتدريب"
@@ -11,47 +11,41 @@
         placeholder="الاسم كامل"
         required
       />
-      
+
       <FormInput
         v-model="form.email"
         type="email"
         placeholder="البريد الإلكتروني"
         required
       />
-      
+
       <FormInput
         v-model="form.phone"
         type="tel"
         placeholder="رقم الهاتف"
         required
       />
-      
+
       <FormInput
         v-model="form.company"
         type="text"
         placeholder="اسم الشركة (اختياري)"
       />
-      
+
       <FormSelect
         v-model="form.service"
         :options="serviceOptions"
         placeholder="اختر نوع الخدمة"
         required
       />
-      
-      <FormInput
-        v-model="form.preferredDate"
-        type="date"
-        required
-      />
-      
+
       <FormTextarea
         v-model="form.notes"
         placeholder="ملاحظات إضافية"
-        rows="3"
+        :rows="3"
       />
-      
-      <PrimaryButton 
+
+      <PrimaryButton
         type="submit"
         :loading="submitting"
         class="w-full"
@@ -99,7 +93,6 @@ const form = reactive<BookingData>({
   phone: '',
   company: '',
   service: '',
-  preferredDate: '',
   notes: ''
 })
 
@@ -115,7 +108,6 @@ const handleSubmit = () => {
     phone: '',
     company: '',
     service: '',
-    preferredDate: '',
     notes: ''
   })
 }
